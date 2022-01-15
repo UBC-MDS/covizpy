@@ -11,7 +11,7 @@ def plot_metric(
     Parameters
     ----------
     country : list, optional
-        A list of the country names of interests, by default ["Canada"]
+        A list of the country names of interests
     val : str, optional
         The name of the metric to be plotted with the new COVID cases. 
         It can be one of the these: "reproduction_rate", "positive_rate", "cardiovasc_death_rate ",
