@@ -1,18 +1,15 @@
 def plot_metric(
-    country=["Canada"],
     metric="positive_rate",
     date_from=None,
     date_to=None
 ):
     """
-    Create a line chart presenting specific country/countries COVID total new
-    cases and another metric for a time period
+    Create a line chart visualizing COVID total new
+    cases and another metric for a specific time period
     
     Parameters
     ----------
-    country : list, optional
-        A list of the country names of interests, by default ["Canada"]
-    val : str, optional
+    metric : str, optional
         The name of the metric to be plotted with the new COVID cases. 
         It can be one of the these: "reproduction_rate", "positive_rate", "cardiovasc_death_rate ",
         or any other numeric column
