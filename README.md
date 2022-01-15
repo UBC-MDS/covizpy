@@ -2,21 +2,21 @@
 
 `covizpy` is a Python package that provides easy access to Covid-19 data from [Our World in Data](https://ourworldindata.org/coronavirus), as well as functions to generate relevant Covid-19 charts and summaries easily. We aim to make `covizpy` simple and easy to use. Our goal is to enable anyone with basic Python programming knowledge to access and visualize Covid-19 data, and make their own informed decisions and conclusions.
 
-There are existing Python packages that allows user to download and generate Covid-19 charts. For example, [covid19pandas](https://github.com/PayneLab/covid19pandas) is a package that presents COVID-19 data from Johns Hopkins University and The New York Times in pandas dataframes, to make analysis and visualization easier in a Python environment.
+There are existing Python packages that allow users to download and generate Covid-19 charts. For example, [covid19pandas](https://github.com/PayneLab/covid19pandas) is a package that presents COVID-19 data from Johns Hopkins University and The New York Times in pandas dataframes, to make analysis and visualization easier in a Python environment.
 
-While other packages have more advance plotting capabilities, we provide simpler functions that allows user to answer questions regarding the Covid-19 pandemic as quickly as possible.
+While other packages have more advanced plotting capabilities, we provide simpler functions that allow users to answer questions regarding the Covid-19 pandemic as quickly as possible.
 
 ## Features
 
-This package contains four functions: `function_1`, `function_2`, `function_3` and `function_4`.
+This package contains four functions: `plot_metric`, `plot_spec`, `get_data` and `plot_summary`.
 
-* `function_1`: ...
+* `plot_metric`: Create a line chart presenting COVID total new cases verses another metric within a time period
 
-* `function_2`: ...
+* `plot_spec`: Create a line chart presenting specific country/countries COVID information within a time period
 
 * `get_data`: User can retrieve the COVID data from the source as a pandas dataframe. Specific data can be retrieved by passing the date range and the list of countries
 
-* `function_4`: ...
+* `plot_summary`: Create a horizontal bar chart summarising a specified variable and value within a time period
 
 ## Installation
 
