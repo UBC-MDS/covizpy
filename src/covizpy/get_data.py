@@ -8,7 +8,7 @@ def get_data(
     location=None,
 ):
     """Get covid data
-    Retrieve covid data in pandas dataframe format witg the time periods and countries provided
+    Retrieve covid data in pandas dataframe format with the time periods and countries provided.
     Parameters
     ----------
     date_from : str, optional
