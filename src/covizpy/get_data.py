@@ -58,16 +58,12 @@ def get_data(
         )
     except TypeError:
         raise TypeError(
-            'Invalid argument type: date_from must be in string format of "%Y-%m-%d".'
+            'Invalid argument type: date_to must be in string format of "%Y-%m-%d".'
         )
 
     if pd.to_datetime(date_to) < pd.to_datetime(date_from):
         raise ValueError(
             "Invalid values: date_from should be smaller or equal to date_to (or today's date if date_to is not specified)."
-        )
-    if pd.to_datetime(date_from) > pd.to_datetime("today").normalize():
-        raise ValueError(
-            "Invalid values: date_from should be smaller or equal to today."
         )
     if pd.to_datetime(date_to) > pd.to_datetime("today").normalize():
         raise ValueError(
