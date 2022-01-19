@@ -1,5 +1,5 @@
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 def get_data(
@@ -85,7 +85,7 @@ def get_data(
 
         query += " and location in @location"
 
-    covid_df = pd.read_csv(url, parse_dates=["date"],)
+    covid_df = pd.read_csv(url, parse_dates=["date"])
     covid_df = covid_df.query(query)
 
     return covid_df
