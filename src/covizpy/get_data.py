@@ -1,3 +1,7 @@
+import pandas as pd
+from datetime import datetime
+
+
 def get_data(
     date_from=None,
     date_to=None,
@@ -9,11 +13,11 @@ def get_data(
     Parameters
     ----------
     date_from : str, optional
-        Start date of the data range. By default 'None' is used to represent 7 days prior to today's date.
+        Start date of the data range with format in "YYYY-MM-DD" format. By default 'None' is used to represent 7 days prior to today's date
     date_to : str, optional
-        End date of data range. By default 'None' is used to represent today's date.
+        End date of data range with format in "YYYY-MM-DD" format. By default 'None' is used to represent today's date
     location : list, optional
-        List of target country names. By default 'None' is used for all countries.
+        List of target country names. By default "None" is used for all countries.
 
     Returns
     -------
@@ -24,3 +28,69 @@ def get_data(
     --------
     >>> get_data(date_from="2022-01-01", date_to="2022-01-07", location=["Canada", "China"])
     """
+    query = "@date_from <= date <= @date_to"
+    url = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"
+
+    if date_from is None:
+        date_from = (pd.to_datetime("today").normalize() -
+                     pd.to_timedelta(7, unit="d")).strftime('%Y-%m-%d')
+
+    if date_to is None:
+        date_to = pd.to_datetime("today").normalize().strftime('%Y-%m-%d')
+
+    try:
+        if date_from != datetime.strptime(date_from, "%Y-%m-%d").strftime("%Y-%m-%d"):
+            raise ValueError
+    except ValueError:
+        raise ValueError(
+            'Invalid argument value: date_from must be in format of YYYY-MM-DD. Also check if it is a valid date.'
+        )
+    except TypeError:
+        raise TypeError(
+            'Invalid argument type: date_from must be in string format of YYYY-MM-DD.'
+        )
+
+    try:
+        if date_to != datetime.strptime(date_to, "%Y-%m-%d").strftime("%Y-%m-%d"):
+            raise ValueError
+    except ValueError:
+        raise ValueError(
+            'Invalid argument value: date_to must be in format of YYYY-MM-DD. Also check if it is a valid date.'
+        )
+    except TypeError:
+        raise TypeError(
+            'Invalid argument type: date_to must be in string format of YYYY-MM-DD.'
+        )
+
+    if pd.to_datetime(date_to) < pd.to_datetime(date_from):
+        raise ValueError(
+            "Invalid values: date_from should be smaller or equal to date_to (or today's date if date_to is not specified)."
+        )
+    if pd.to_datetime(date_to) > pd.to_datetime("today").normalize():
+        raise ValueError(
+            "Invalid values: date_to should be smaller or equal to today."
+        )
+
+    if location is not None:
+
+        if not (isinstance(location, list)):
+            raise TypeError(
+                "Invalid argument type: location must be a list of strings."
+            )
+
+        for item in location:
+            if not (isinstance(item, str)):
+                raise TypeError(
+                    "Invalid argument type: values inside location list must be a strings."
+                )
+
+        query += " and location in @location"
+
+    try:
+        covid_df = pd.read_csv(url, parse_dates=["date"])
+    except:
+        return "The link to the data is broken."
+
+    covid_df = covid_df.query(query)
+
+    return covid_df
