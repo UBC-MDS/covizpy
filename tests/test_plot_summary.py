@@ -40,11 +40,13 @@ def test_plot_summary_agg():
     """
     Test aggregation logic of plot_summary()
     """
+    # check groupby sum produce correct result for location
     assert (
         plot_summary(date_from="2022-01-01", date_to="2022-01-10").data["location"][0]
         == "United States"
     ), "Aggregation logic is incorrect!"
 
+    # check groupby sum produce correct result for new_cases
     assert (
         plot_summary(date_from="2022-01-01", date_to="2022-01-10").data["new_cases"][0]
         == 6874654.0
@@ -55,7 +57,7 @@ def test_plot_summary_altair():
     """
     Test Altair output of plot_summary()
     """
-    # X-axis label
+    # check x-axis label is new_cases
     assert (
         plot_summary(date_from="2022-01-01", date_to="2022-01-10").encoding["x"][
             "shorthand"
