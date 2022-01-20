@@ -1,26 +1,30 @@
-def plot_metric(metric='positive_rate', date_from=None, date_to=None):
+def plot_metric(metric='positive_rate', date_from="2022-01-01", date_to="2022-01-13"):
     """
     Create a line chart visualizing COVID total new
     cases and another metric for a specific time period
     
     Parameters
     ----------
-    metric : str, optional
-        The name of the metric to be plotted with the new COVID cases. 
-        It can be one of the these: "reproduction_rate", "positive_rate",
-        or any other numeric column
+    metric    : str, optional
+                The name of the metric to be plotted with the new COVID cases. 
+                It can be one of the these: "reproduction_rate", "positive_rate",
+                or any other numeric column
     date_from : str, optional
-        Start date of the plot, by default "None" will use 2 weeks prior today's date
-    date_to : str, optional
-        End date of the plot, by default "None" will use today's date
+                Start date of the plot in "YYYY-MM-DD" format, by default "2022-01-01"
+    date_to   : str, optional
+                End date of the plot in "YYYY-MM-DD" format, by default "2022-01-13"
     Returns
     -------
     chart
         The line chart created
     """
-
+    
+    try:
+        covid_df = pd.read_csv('https://covid.ourworldindata.org/data/owid-covid-data.csv')
+    except:
+        return "The link to the data is broken"
+    
     # Check the input format of arguments
-
     if not isinstance(metric, str):
         return 'Incorrect argument type: Metric 1 input should be a float'
 
@@ -58,7 +62,9 @@ def plot_metric(metric='positive_rate', date_from=None, date_to=None):
 
     df = covid_df[covid_df['date'] > date_from]
     df = df[df['date'] < date_to]
-
+    
+    metric_label = "Mean " + metric.replace("_", " ")
+    
     base = alt.Chart(df).encode(x=alt.X('monthdate(date):T',
                                 axis=alt.Axis(format='%b-%d'),
                                 title='Date'))
@@ -66,17 +72,17 @@ def plot_metric(metric='positive_rate', date_from=None, date_to=None):
     line1 = base.mark_line(color='skyblue', interpolate='monotone'
                            ).encode(alt.Y('sum(new_cases)',
                                     scale=alt.Scale(zero=False),
-                                    axis=alt.Axis(title='Monthly new cases'
+                                    axis=alt.Axis(title='Daily new cases'
                                     , titleColor='skyblue')))
 
     line2 = base.mark_line(color='orange', interpolate='monotone'
-                           ).encode(alt.Y('mean(positive_rate)',
+                           ).encode(alt.Y(f"mean({metric})",
                                     scale=alt.Scale(zero=False),
-                                    axis=alt.Axis(title='Positivity rate'
+                                    axis=alt.Axis(title=metric_label
                                     , titleColor='orange')))
 
     plot = alt.layer(line1, line2,
-                     title='Monthly COVID cases versus positivty rate'
+                     title= 'Daily COVID cases versus ' + metric_label
                      ).resolve_scale(y='independent')
 
     return plot
