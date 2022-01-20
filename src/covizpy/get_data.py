@@ -13,11 +13,11 @@ def get_data(
     Parameters
     ----------
     date_from : str, optional
-        Start date of the data range with format '%Y-%m-%d'. By default 'None' is used to represent 7 days prior to today's date
+        Start date of the data range with format in "YYYY-MM-DD" format. By default 'None' is used to represent 7 days prior to today's date
     date_to : str, optional
-        End date of data range with format '%Y-%m-%d'. By default 'None' is used to represent today's date
+        End date of data range with format in "YYYY-MM-DD" format. By default 'None' is used to represent today's date
     location : list, optional
-        List of target country names. By default 'None' is used for all countries.
+        List of target country names. By default "None" is used for all countries.
 
     Returns
     -------
@@ -43,11 +43,11 @@ def get_data(
             raise ValueError
     except ValueError:
         raise ValueError(
-            'Invalid argument value: date_from must be in format of "%Y-%m-%d". Also check if it is a valid date.'
+            'Invalid argument value: date_from must be in format of YYYY-MM-DD. Also check if it is a valid date.'
         )
     except TypeError:
         raise TypeError(
-            'Invalid argument type: date_from must be in string format of "%Y-%m-%d".'
+            'Invalid argument type: date_from must be in string format of YYYY-MM-DD.'
         )
 
     try:
@@ -55,11 +55,11 @@ def get_data(
             raise ValueError
     except ValueError:
         raise ValueError(
-            'Invalid argument value: date_to must be in format of "%Y-%m-%d". Also check if it is a valid date.'
+            'Invalid argument value: date_to must be in format of YYYY-MM-DD. Also check if it is a valid date.'
         )
     except TypeError:
         raise TypeError(
-            'Invalid argument type: date_to must be in string format of "%Y-%m-%d".'
+            'Invalid argument type: date_to must be in string format of YYYY-MM-DD.'
         )
 
     if pd.to_datetime(date_to) < pd.to_datetime(date_from):
@@ -86,7 +86,11 @@ def get_data(
 
         query += " and location in @location"
 
-    covid_df = pd.read_csv(url, parse_dates=["date"])
+    try:
+        covid_df = pd.read_csv(url, parse_dates=["date"])
+    except:
+        return "The link to the data is broken."
+
     covid_df = covid_df.query(query)
 
     return covid_df
