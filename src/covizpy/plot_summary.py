@@ -4,6 +4,7 @@ from dateutil.parser import parse
 
 
 def plot_summary(
+    df,
     var="location",
     val="new_cases",
     fun="sum",
@@ -18,6 +19,8 @@ def plot_summary(
 
     Parameters
     ----------
+    df  : Pandas dataframe
+        Pandas dataframe of the selected covid data from get_data()
     var : str, optional
         Qualitative values to segment data. Must be a categorical variable.
         Also known as a 'dimension'. By default 'location'
@@ -33,9 +36,6 @@ def plot_summary(
     top_n : int, optional
         Specify number of qualitative values to show, by default 5
     """
-    # Load data
-    df = pd.read_csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
-
     # init dates if None
     if date_from is None:
         date_from = (
