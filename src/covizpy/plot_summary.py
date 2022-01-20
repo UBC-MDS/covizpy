@@ -30,7 +30,7 @@ def plot_summary(
     fun : str, optional
         Aggregation function for val, by default 'sum'
     date_from : str, optional
-        Start date of the data range with format '%Y-%m-%d'. By default 'None' is used to represent 7 days prior to today's date
+        Start date of the data range with format 'YYYY-MM-DD'. By default 'None' is used to represent 7 days prior to today's date
     date_to : str, optional
         End date of data range with format '%Y-%m-%d'. By default 'None' is used to represent today's date
     top_n : int, optional
