@@ -7,8 +7,8 @@ def plot_summary(
     var="location",
     val="new_cases",
     fun="sum",
-    date_from="2022-01-01",
-    date_to="2022-01-13",
+    date_from=None,
+    date_to=None,
     top_n=5,
 ):
     """Generate summary plot
@@ -27,14 +27,23 @@ def plot_summary(
     fun : str, optional
         Aggregation function for val, by default 'sum'
     date_from : str, optional
-        Start date for plot summary, by default '2022-01-01'
+        Start date of the data range with format '%Y-%m-%d'. By default 'None' is used to represent 7 days prior to today's date
     date_to : str, optional
-        End date for plot summary, by default '2022-01-13'
+        End date of data range with format '%Y-%m-%d'. By default 'None' is used to represent today's date
     top_n : int, optional
         Specify number of qualitative values to show, by default 5
     """
     # Load data
     df = pd.read_csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
+
+    # init dates if None
+    if date_from is None:
+        date_from = (
+            pd.to_datetime("today").normalize() - pd.to_timedelta(7, unit="d")
+        ).strftime("%Y-%m-%d")
+
+    if date_to is None:
+        date_to = pd.to_datetime("today").normalize().strftime("%Y-%m-%d")
 
     # Exception Handling
     if not isinstance(var, str):
