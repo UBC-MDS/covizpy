@@ -51,25 +51,25 @@ def test_get_data_input_types():
     # check input type of data_from
     with raises(TypeError) as e:
         get_data(date_from=123)
-    assert 'Invalid argument type: date_from must be in string format of "%Y-%m-%d" (e.g. 2021-10-31).' == str(
+    assert 'Invalid argument type: date_from must be in string format of YYYY-MM-DD.' == str(
         e.value)
 
     # check date format of data_from
     with raises(ValueError) as e:
         get_data(date_from='10-15-2021')
-    assert 'Invalid argument value: date_from must be in format of "%Y-%m-%d" (e.g. 2021-10-31). Also check if it is a valid date.' == str(
+    assert 'Invalid argument value: date_from must be in format of YYYY-MM-DD. Also check if it is a valid date.' == str(
         e.value)
 
     # check input type of data_to
     with raises(TypeError) as e:
         get_data(date_to=123)
-    assert 'Invalid argument type: date_to must be in string format of "%Y-%m-%d" (e.g. 2021-10-31).' == str(
+    assert 'Invalid argument type: date_to must be in string format of YYYY-MM-DD.' == str(
         e.value)
 
     # check date format of data_to
     with raises(ValueError) as e:
         get_data(date_to='10-15-2021')
-    assert 'Invalid argument value: date_to must be in format of "%Y-%m-%d" (e.g. 2021-10-31). Also check if it is a valid date.' == str(
+    assert 'Invalid argument value: date_to must be in format of YYYY-MM-DD. Also check if it is a valid date.' == str(
         e.value)
 
     # check input type of location: not a list
@@ -92,13 +92,13 @@ def test_get_data_input_values():
     # check valid date range of data_from
     with raises(ValueError) as e:
         get_data(date_from='2021-02-29')
-    assert 'Invalid argument value: date_from must be in format of "%Y-%m-%d" (e.g. 2021-10-31). Also check if it is a valid date.' == str(
+    assert 'Invalid argument value: date_from must be in format of YYYY-MM-DD. Also check if it is a valid date.' == str(
         e.value)
 
     # check valid date range of data_to
     with raises(ValueError) as e:
         get_data(date_to='2021-02-29')
-    assert 'Invalid argument value: date_to must be in format of "%Y-%m-%d" (e.g. 2021-10-31). Also check if it is a valid date.' == str(
+    assert 'Invalid argument value: date_to must be in format of YYYY-MM-DD. Also check if it is a valid date.' == str(
         e.value)
 
     # check valid date range: date_from <= date_to
