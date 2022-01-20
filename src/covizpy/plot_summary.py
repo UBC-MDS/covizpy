@@ -46,6 +46,9 @@ def plot_summary(
         date_to = pd.to_datetime("today").normalize().strftime("%Y-%m-%d")
 
     # Exception Handling
+    if not isinstance(df, pd.DataFrame):
+        raise FileNotFoundError("Data not found! There may be a problem with data URL.")
+
     if not isinstance(var, str):
         raise TypeError("var needs to be of str type!")
 
@@ -54,9 +57,6 @@ def plot_summary(
 
     if not isinstance(fun, str):
         raise TypeError("fun needs to be of str type!")
-
-    if not isinstance(df, pd.DataFrame):
-        raise FileNotFoundError("Data not found! There may be a problem with data URL.")
 
     if df[var].dtypes.kind != "O":
         raise TypeError("var needs to be a categorical variable!")

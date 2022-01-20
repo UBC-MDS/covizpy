@@ -5,14 +5,14 @@ from pytest import raises, fixture
 
 
 @fixture
-def df(location):
+def df():
     """
     Retrieve the dataframe
     """
-    return get_data(ldate_from="2022-01-01", date_to="2022-01-10")
+    return get_data(date_from="2022-01-01", date_to="2022-01-10")
 
 
-def test_plot_summary_inputs():
+def test_plot_summary_inputs(df):
     """
     Test the input type exceptions of plot_summary()
     """
@@ -45,7 +45,7 @@ def test_plot_summary_inputs():
     )
 
 
-def test_plot_summary_agg():
+def test_plot_summary_agg(df):
     """
     Test aggregation logic of plot_summary()
     """
@@ -66,7 +66,7 @@ def test_plot_summary_agg():
     ), "Aggregation logic is incorrect!"
 
 
-def test_plot_summary_altair():
+def test_plot_summary_altair(df):
     """
     Test Altair output of plot_summary()
     """
