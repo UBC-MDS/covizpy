@@ -37,6 +37,15 @@ def plot_summary(
     df = pd.read_csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
 
     # Exception Handling
+    if not isinstance(var, str):
+        raise TypeError("var needs to be of str type!")
+
+    if not isinstance(val, str):
+        raise TypeError("val needs to be of str type!")
+
+    if not isinstance(fun, str):
+        raise TypeError("fun needs to be of str type!")
+
     if not isinstance(df, pd.DataFrame):
         raise FileNotFoundError("Data not found! There may be a problem with data URL.")
 
@@ -48,6 +57,13 @@ def plot_summary(
 
     if not isinstance(top_n, int) or top_n <= 0:
         raise ValueError("top_n must be an integer bigger than zero")
+
+    if pd.to_datetime(date_to) < pd.to_datetime(date_from):
+        raise ValueError(
+            "Invalid values: date_from should be smaller or equal to date_to (or today's date if date_to is not specified)."
+        )
+    if pd.to_datetime(date_to) > pd.to_datetime("today").normalize():
+        raise ValueError("Invalid values: date_to should be smaller or equal to today.")
 
     # Parse date, else raise ValueError
     date_from = parse(date_from)
