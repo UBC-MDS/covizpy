@@ -2,6 +2,7 @@ from covizpy.plot_summary import plot_summary
 from covizpy.get_data import get_data
 import pandas as pd
 from pytest import raises, fixture
+import pickle
 
 
 @fixture
@@ -9,7 +10,8 @@ def df():
     """
     Retrieve the dataframe
     """
-    return get_data(date_from="2022-01-01", date_to="2022-01-10")
+    with open("tests/test_df_plot_summary.pkl", "rb") as pickle_file:
+        return pickle.load(pickle_file)
 
 
 def test_plot_summary_inputs(df):
@@ -62,7 +64,7 @@ def test_plot_summary_agg(df):
         plot_summary(df, date_from="2022-01-01", date_to="2022-01-10").data[
             "new_cases"
         ][0]
-        == 6874654.0
+        == 6898160.0
     ), "Aggregation logic is incorrect!"
 
 
