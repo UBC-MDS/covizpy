@@ -1,4 +1,11 @@
-def plot_metric(metric='positive_rate', date_from="2022-01-01", date_to="2022-01-13"):
+# File Name: plot_metric.py
+# Author: Rohit Rawat
+
+import altair as alt
+from covizpy.get_data import get_data
+alt.data_transformers.enable('data_server')
+
+def plot_metric(metric='positive_rate', date_from=None, date_to=None):
     """
     Create a line chart visualizing COVID total new
     cases and another metric for a specific time period
@@ -19,54 +26,30 @@ def plot_metric(metric='positive_rate', date_from="2022-01-01", date_to="2022-01
         The line chart created
     """
     
-    try:
-        covid_df = pd.read_csv('https://covid.ourworldindata.org/data/owid-covid-data.csv')
-    except:
-        return "The link to the data is broken"
-    
     # Check the input format of arguments
     if not isinstance(metric, str):
         return 'Incorrect argument type: Metric 1 input should be a float'
 
-    if not isinstance(date_from, str):
+    if (not isinstance(date_from, str)) and date_from is not None:
         return 'Incorrect argument type: The starting date should be in string format'
 
-    if not isinstance(date_to, str):
+    if (not isinstance(date_to, str)) and date_to is not None:
         return 'Incorrect argument type: The end date should be in string format'
 
-    # Check the date format of the dates
-
     try:
-        datetime.datetime.strptime(date_from, '%Y-%m-%d')
+        df = get_data(date_from, date_to)
     except:
-        return 'date_from: Date Formart incorrect, should be YYYY-MM-DD'
-    try:
-        datetime.datetime.strptime(date_to, '%Y-%m-%d')
-    except:
-        return 'date_to: Date format incorrect, should be YYYY-MM-DD'
+        return 'Error in date format: Could not fetch data using get_data. Incorrect date format'
+    
+    # Check if the metric provided is present in the data frame or not
+    if metric not in df.columns:
+        return 'Incorrect argument value: The metric chosen is not one of the columns in dataframe'
 
-    # Check if the date value and column name is correct
-
-    if not date_from < date_to:
-        return 'The date_from has to be earlier than date_to argument'
-    if date_from < covid_df.date.min():
-        return "The date_from is less than the minimum date possible ('2020-01-01')"
-    if date_to > covid_df.date.max():
-        return 'The date_to is greater than the maximum date possible'
-    if metric not in covid_df.columns:
-        return 'The metric column is not present in df. Check column name'
-    if not(isinstance(covid_df[metric][0], float)):
-        return 'The data type of the metric column should be numeric'
-
-    # Filtering the data for lighter visualizations
-
-    df = covid_df[covid_df['date'] > date_from]
-    df = df[df['date'] < date_to]
     
     metric_label = "Mean " + metric.replace("_", " ")
     
-    base = alt.Chart(df).encode(x=alt.X('monthdate(date):T',
-                                axis=alt.Axis(format='%b-%d'),
+    base = alt.Chart(df).encode(x=alt.X('yearmonthdate(date):T',
+                                axis=alt.Axis(format='%e %b, %Y'),
                                 title='Date'))
 
     line1 = base.mark_line(color='skyblue', interpolate='monotone'
@@ -74,7 +57,7 @@ def plot_metric(metric='positive_rate', date_from="2022-01-01", date_to="2022-01
                                     scale=alt.Scale(zero=False),
                                     axis=alt.Axis(title='Daily new cases'
                                     , titleColor='skyblue')))
-
+    
     line2 = base.mark_line(color='orange', interpolate='monotone'
                            ).encode(alt.Y(f"mean({metric})",
                                     scale=alt.Scale(zero=False),
