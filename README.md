@@ -49,7 +49,7 @@ df = get_data()
 plot_summary(df)
 ```
 
-![Summary graph](https://github.com/UBC-MDS/covizpy/raw/readme_update/img/plot_summary.png)
+![Summary graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_summary.png)
 
 
 ### Plot metrics of new COVID-19 cases (line chart)
@@ -58,7 +58,7 @@ plot_summary(df)
 plot_metric()
 ```
 
-![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/raw/readme_update/img/plot_metric.png)
+![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_metric.png)
 
 ### Plot specific country COVID-19 cases (line chart)
 
@@ -66,7 +66,7 @@ plot_metric()
 plot_spec(df, country=["Canada"])
 ```
 
-![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/raw/readme_update/img/plot_spec.png)
+![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_spec.png)
 
 
 ## Contributors
