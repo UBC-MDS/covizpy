@@ -13,6 +13,7 @@ def plot_spec(
     val="new_cases",
     date_from=None,
     date_to=None,
+    title=None
 ):
     """
     Create a line chart presenting specific country/countries COVID information
@@ -23,15 +24,19 @@ def plot_spec(
     df  : Pandas dataframe
         Pandas dataframe of the selected covid data from get_data()
     location : list, optional
-        List of target country names. By default ["Canada"]
+        List of target country names or . By default ["Canada"]
     val : str, optional
         Quantitative values of interests. Must be numeric variable.
         Also known as a 'measure'. By default 'new_cases'
     date_from : str, optional
-        Start date of the data range with format in "YYYY-MM-DD" format. By default 'None' is used to represent 7 days prior to today's date
+        Start date of the data range with format in "YYYY-MM-DD" format. By 
+        default 'None' is used to represent 7 days prior to today's date
     date_to : str, optional
-        End date of data range with format in "YYYY-MM-DD" format. By default 'None' is used to represent today's date
-
+        End date of data range with format in "YYYY-MM-DD" format. By default
+        'None' is used to represent today's date
+    title : str, optional
+        The title of the plot. By default 'None' will be generated based on val.
+    
     Returns
     -------
     plot
@@ -43,6 +48,8 @@ def plot_spec(
 
     if date_to is None:
         date_to = pd.to_datetime("today").normalize().strftime("%Y-%m-%d")
+    
+
     
     # Exception Handling
     if not isinstance(df, pd.DataFrame):
@@ -80,7 +87,11 @@ def plot_spec(
         )
     if pd.to_datetime(date_to) > pd.to_datetime("today").normalize():
         raise ValueError("Invalid values: date_to should be smaller or equal to today.")
-
+        
+    if title != None:
+        if not isinstance(title, str):
+            raise TypeError("Invalid argument type: title must be a string.")
+    
     # Parse date, else raise ValueError
     date_from = parse(date_from)
     date_to = parse(date_to)
@@ -94,22 +105,29 @@ def plot_spec(
     # Filter by country
     df = df.query("location in @location")
     
+    # Remove aggregated locations
+    df = df[~df["iso_code"].str.startswith("OWID")]
+    
     # Create Y axis lable
-    val_label = val.replace("_", " ").capitalize()
+    val_label = val.replace("_", " ").title()
+
+    # init plot title if None
+    if title is None:
+        title = f"COVID {val_label}"
     
     # Create line plot
-    line = alt.Chart(df).mark_line().encode(
-        x=alt.X('monthdate(date):T', axis=alt.Axis(format='%b-%d'), title='Date'),
+    line = alt.Chart(df, title = title).mark_line().encode(
+        x=alt.X('monthdate(date):T', axis=alt.Axis(format='%e %b, %Y'), title='Date'),
         y=alt.Y(val, title=val_label),
         color=alt.Color('location', legend=None),
         tooltip=['location', val]
-    ).interactive()
+    )
     
     # Use direct labels
     order = (df.loc[df['date'] == df['date'].max()].sort_values(val, ascending=False))
 
     text = alt.Chart(order).mark_text(dx=20).encode(
-        x=alt.X('monthdate(date):T', axis=alt.Axis(format='%b-%d'), title='Date'),
+        x=alt.X('monthdate(date):T', axis=alt.Axis(format='%e %b, %Y'), title='Date'),
         y=alt.Y(val, title=val_label),
         text='location',
         color='location',
