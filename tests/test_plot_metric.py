@@ -29,3 +29,18 @@ def test_plot_metric_output():
     # check the output type of the plot 
     assert type(plot_metric()), 'altair.vegalite.v4.api.LayerChart'
     
+        # check the output type of the plot 
+    assert type(plot_metric()), 'altair.vegalite.v4.api.LayerChart'
+
+    # check the layer 1 type is line or not
+    assert plot_metric().layer[0].mark.type, 'line'
+
+    # check the layer 2 type is line or not
+    assert plot_metric().layer[1].mark.type, 'line'
+
+    # check the layer 1 x-axis is named Date or not
+    assert plot_metric().layer[0].encoding.x.title, 'Date'
+
+    # check the layer 1 y-axis encoding is new_cases column or not
+    assert plot_metric().layer[0].encoding.y.field, 'new_cases'
+    
