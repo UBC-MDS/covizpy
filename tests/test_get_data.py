@@ -1,3 +1,6 @@
+# File Name: test_get_data.py
+# Author: Thomas Siu
+
 from covizpy.get_data import get_data
 import pandas as pd
 from pytest import raises, fixture
