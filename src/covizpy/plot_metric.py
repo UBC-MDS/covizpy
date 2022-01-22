@@ -28,22 +28,23 @@ def plot_metric(metric='positive_rate', date_from=None, date_to=None):
     
     # Check the input format of arguments
     if not isinstance(metric, str):
-        return 'Incorrect argument type: Metric 1 input should be a float'
+        raise TypeError('Incorrect argument type: Metric 1 input should be a string')
 
     if (not isinstance(date_from, str)) and date_from is not None:
-        return 'Incorrect argument type: The starting date should be in string format'
+        raise TypeError('Incorrect argument type: The starting date should be in string format')
 
     if (not isinstance(date_to, str)) and date_to is not None:
-        return 'Incorrect argument type: The end date should be in string format'
+        raise TypeError('Incorrect argument type: The end date should be in string format')
 
+    # Check if it is able to fetch the data
     try:
         df = get_data(date_from, date_to)
-    except:
-        return 'Error in date format: Could not fetch data using get_data. Incorrect date format'
+    except FileNotFoundError: 
+        raise FileNotFoundError('Data not found! There may be a problem with data URL or your date format.')
     
     # Check if the metric provided is present in the data frame or not
     if metric not in df.columns:
-        return 'Incorrect argument value: The metric chosen is not one of the columns in dataframe'
+        raise ValueError('Incorrect argument value: The metric chosen is not one of the columns in dataframe')
 
     
     metric_label = "Mean " + metric.replace("_", " ")
