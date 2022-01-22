@@ -21,6 +21,11 @@ def test_plot_spec_inputs(df):
     """
     Test the input type exceptions of plot_spec()
     """
+    # check input type of dataframe
+    with raises(FileNotFoundError) as e:
+        plot_spec(None, location="Canada")
+    assert "Data not found. There may be a problem with data URL." == str(e.value)
+    
     # check input type of location
     with raises(TypeError) as e:
         plot_spec(df, location="Canada")
@@ -60,6 +65,11 @@ def test_plot_spec_inputs(df):
     with raises(ValueError) as e:
         plot_spec(df, date_to="2022-06-11")
     assert "Invalid values: date_to should be smaller or equal to today." == str(e.value)
+    
+    # check title value
+    with raises(TypeError) as e:
+        plot_spec(df, title=True)
+    assert "Invalid argument type: title must be a string." == str(e.value)
 
 
 def test_plot_spec_mapping(df):
