@@ -67,7 +67,7 @@ plot_summary(df)
 plot_metric()
 ```
 
-![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/blob/update-img/img/plot_metric.png)
+![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_metric.png)
 
 ### Plot specific country COVID-19 cases (line chart)
 
