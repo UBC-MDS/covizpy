@@ -21,12 +21,53 @@ This package contains four functions: `plot_metric`, `plot_spec`, `get_data` and
 ## Installation
 
 ```bash
-$ pip install covizpy
+$ pip install --index-url https://test.pypi.org/simple/ covizpy
 ```
 
-## Usage
+## Usage and Examples
 
-- TODO
+To use the package, import the package with following commands:
+
+```python
+from covizpy.get_data import get_data
+from covizpy.plot_summary import plot_summary
+from covizpy.plot_metric import plot_metric
+from covizpy.plot_spec import plot_spec
+```
+
+To use the functions, see below examples:
+
+### Retrieve COVID-19 data with default date range and location
+
+```python
+df = get_data()
+```
+
+### Plot summary graph (bar chart)
+
+```python
+plot_summary(df)
+```
+
+![Summary graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_summary.png)
+
+
+### Plot metrics of new COVID-19 cases (line chart)
+
+```python
+plot_metric()
+```
+
+![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_metric.png)
+
+### Plot specific country COVID-19 cases (line chart)
+
+```python
+plot_spec(df, country=["Canada"])
+```
+
+![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_spec.png)
+
 
 ## Contributors
 
