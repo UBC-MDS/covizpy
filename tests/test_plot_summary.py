@@ -72,10 +72,10 @@ def test_plot_summary_altair(df):
     """
     Test Altair output of plot_summary()
     """
-    # check x-axis label is new_cases
+    # check x-axis is using the correct variable
     assert (
         plot_summary(df, date_from="2022-01-01", date_to="2022-01-10").encoding["x"][
             "shorthand"
         ]
         == "new_cases"
-    ), "Altair chart x-axis label should be 'new_cases'"
+    ), "Altair chart x-axis should be using variable 'new_cases'"
