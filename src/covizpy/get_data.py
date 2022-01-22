@@ -42,8 +42,9 @@ def get_data(
         date_to = pd.to_datetime("today").normalize().strftime('%Y-%m-%d')
 
     try:
-        if date_from != datetime.strptime(date_from, "%Y-%m-%d").strftime("%Y-%m-%d"):
-            raise ValueError
+        date_from != datetime.strptime(
+            date_from, "%Y-%m-%d").strftime("%Y-%m-%d")
+        #            raise ValueError
     except ValueError:
         raise ValueError(
             'Invalid argument value: date_from must be in format of YYYY-MM-DD. Also check if it is a valid date.'
@@ -54,8 +55,8 @@ def get_data(
         )
 
     try:
-        if date_to != datetime.strptime(date_to, "%Y-%m-%d").strftime("%Y-%m-%d"):
-            raise ValueError
+        date_to != datetime.strptime(date_to, "%Y-%m-%d").strftime("%Y-%m-%d")
+        #            raise ValueError
     except ValueError:
         raise ValueError(
             'Invalid argument value: date_to must be in format of YYYY-MM-DD. Also check if it is a valid date.'
