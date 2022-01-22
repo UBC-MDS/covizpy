@@ -18,10 +18,19 @@ This package contains four functions: `plot_metric`, `plot_spec`, `get_data` and
 
 * `plot_summary`: Create a horizontal bar chart summarising a specified variable and value within a time period
 
+## Dependencies
+
+Before installing the package, following packages must be installed:
+
+- python = "^3.9"
+- pandas = "^1.3.5"
+- altair = "^4.2.0"
+- altair-saver = "^0.5.0"
+
 ## Installation
 
 ```bash
-$ pip install --index-url https://test.pypi.org/simple/ covizpy
+pip install --index-url https://test.pypi.org/simple/ covizpy
 ```
 
 ## Usage and Examples
