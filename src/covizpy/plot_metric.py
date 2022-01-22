@@ -1,3 +1,6 @@
+# File Name: plot_metric.py
+# Author: Rohit Rawat
+
 import altair as alt
 from covizpy.get_data import get_data
 alt.data_transformers.enable('data_server')
