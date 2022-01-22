@@ -96,5 +96,5 @@ def get_data(
         return "The link to the data is broken."
 
     covid_df = covid_df.query(query)
-
+    covid_df = covid_df[~df["iso_code"].str.startswith("OWID")]
     return covid_df
