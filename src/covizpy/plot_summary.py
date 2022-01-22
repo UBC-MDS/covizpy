@@ -91,4 +91,12 @@ def plot_summary(
     df_plot = df.groupby(var).agg({val: fun})[val].nlargest(top_n)
     df_plot = df_plot.to_frame().reset_index()
 
-    return alt.Chart(df_plot).mark_bar().encode(y=alt.Y(var, sort="x"), x=val)
+    y_lab = var.replace("_", " ").title()
+    x_lab = val.replace("_", " ").title()
+    title = f"Top {top_n} {y_lab} by {x_lab}"
+
+    return (
+        alt.Chart(df_plot, title=title)
+        .mark_bar()
+        .encode(y=alt.Y(var, sort="x", title=y_lab), x=alt.X(val, title=x_lab))
+    )
