@@ -14,18 +14,13 @@ def location():
     return ["Canada", "United Kingdom", "China"]
 
 
-@fixture
-def df(location):
-    """
-    Retrieve the dataframe
-    """
-    return get_data(location=location)
-
-
-def test_get_data_output(df, location):
+def test_get_data_output(location):
     """
     Test the output of get_data()
     """
+
+    df = get_data(location=location)
+
     # check the return type of the function
     assert type(
         df) == pd.core.frame.DataFrame, "Return type should be a pandas dataframe."
