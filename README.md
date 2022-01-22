@@ -10,7 +10,7 @@ While other packages have more advanced plotting capabilities, we provide simple
 
 This package contains four functions: `plot_metric`, `plot_spec`, `get_data` and `plot_summary`.
 
-* `plot_metric`: Create a line chart presenting COVID total new cases verses another metric within a time period
+* `plot_metric`: Create a line chart presenting COVID total new cases versus another metric within a time period
 
 * `plot_spec`: Create a line chart presenting specific country/countries COVID information within a time period
 
@@ -58,7 +58,7 @@ plot_summary(df)
 plot_metric()
 ```
 
-![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_metric.png)
+![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/blob/update-img/img/plot_metric.png)
 
 ### Plot specific country COVID-19 cases (line chart)
 
