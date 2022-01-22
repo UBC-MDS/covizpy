@@ -117,7 +117,7 @@ def plot_spec(
     
     # Create line plot
     line = alt.Chart(df, title = title).mark_line().encode(
-        x=alt.X('monthdate(date):T', axis=alt.Axis(format='%e %b, %Y'), title='Date'),
+        x=alt.X('yearmonthdate(date):T', axis=alt.Axis(format='%e %b, %Y'), title='Date'),
         y=alt.Y(val, title=val_label),
         color=alt.Color('location', legend=None),
         tooltip=['location', val]
@@ -127,7 +127,7 @@ def plot_spec(
     order = (df.loc[df['date'] == df['date'].max()].sort_values(val, ascending=False))
 
     text = alt.Chart(order).mark_text(dx=20).encode(
-        x=alt.X('monthdate(date):T', axis=alt.Axis(format='%e %b, %Y'), title='Date'),
+        x=alt.X('yearmonthdate(date):T', axis=alt.Axis(format='%e %b, %Y'), title='Date'),
         y=alt.Y(val, title=val_label),
         text='location',
         color='location',
