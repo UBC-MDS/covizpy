@@ -1,3 +1,6 @@
+# File Name: test_plot_metric.py
+# Author: Rohit Rawat
+
 from covizpy.plot_metric import plot_metric
 
 def test_plot_metric_input():
