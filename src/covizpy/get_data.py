@@ -1,3 +1,6 @@
+# File Name: get_data.py
+# Author: Thomas Siu
+
 import pandas as pd
 from datetime import datetime
 
@@ -13,11 +16,11 @@ def get_data(
     Parameters
     ----------
     date_from : str, optional
-        Start date of the data range with format in "YYYY-MM-DD" format. By default 'None' is used to represent 7 days prior to today's date
+        Start date of the data range with format 'YYYY-MM-DD'. By default 'None' is used to represent 7 days prior to today's date
     date_to : str, optional
-        End date of data range with format in "YYYY-MM-DD" format. By default 'None' is used to represent today's date
+        End date of data range with format 'YYYY-MM-DD'. By default 'None' is used to represent today's date
     location : list, optional
-        List of target country names. By default "None" is used for all countries.
+        List of target country names. By default 'None' is used for all countries.
 
     Returns
     -------
@@ -29,7 +32,7 @@ def get_data(
     >>> get_data(date_from="2022-01-01", date_to="2022-01-07", location=["Canada", "China"])
     """
     query = "@date_from <= date <= @date_to"
-    url = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"
+    url = "https://covid.ourworldindata.org/data/owid-covid-data.csv"
 
     if date_from is None:
         date_from = (pd.to_datetime("today").normalize() -
