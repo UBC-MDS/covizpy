@@ -63,7 +63,7 @@ plot_summary(df, var="location", val="new_cases", fun="sum", date_from="2022-01-
 ### Plot COVID-19 cases for specific countries (line chart)
 
 ```python
-plot_spec(df, location=["Canada", "China"], val="new_cases", date_from="2022-01-01", date_to="2022-01-07")
+plot_spec(df, location=["Canada", "Turkey"], val="new_cases", date_from="2022-01-01", date_to="2022-01-07")
 ```
 
 ![New COVID-19 specific graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_spec.png)

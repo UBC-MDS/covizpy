@@ -44,7 +44,7 @@ def plot_spec(
     
     Examples
     --------
-    >>> plot_spec(df, location=["Canada", "China"], val="new_deaths", date_from="2022-01-01", date_to="2022-01-07")
+    >>> plot_spec(df, location=["Canada", "Turkey"], val="new_cases", date_from="2022-01-01", date_to="2022-01-07")
     
     """
     # init dates if None
