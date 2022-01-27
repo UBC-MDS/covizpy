@@ -56,6 +56,8 @@ jobs:
           enforce_admins: false
     # Step 5. Use PSR to make release
     - name: Python Semantic Release
+      env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
           pip install python-semantic-release
           git config user.name github-actions
