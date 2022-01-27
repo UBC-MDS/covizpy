@@ -60,7 +60,7 @@ plot_summary(df, var="location", val="new_cases", fun="sum", date_from="2022-01-
 
 ![Summary graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_summary.png)
 
-### Plot specific country COVID-19 cases (line chart)
+### Plot COVID-19 cases for specific countries (line chart)
 
 ```python
 plot_spec(df, location=["Canada", "China"], val="new_cases", date_from="2022-01-01", date_to="2022-01-07")
@@ -68,7 +68,7 @@ plot_spec(df, location=["Canada", "China"], val="new_cases", date_from="2022-01-
 
 ![New COVID-19 specific graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_spec.png)
 
-### Plot metrics of new COVID-19 cases versus positive rate (line chart)
+### Plot new COVID-19 cases versus another metric (line chart)
 
 ```python
 plot_metric(metric='positive_rate', date_from="2022-01-15", date_to="2022-01-21")
