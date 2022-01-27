@@ -51,7 +51,7 @@ jobs:
       uses: benjefferies/branch-protection-bot@master
       if: always()
       with:
-          access-token: ${{ secrets.ACCESS_TOKEN }}
+          access_token: ${{ secrets.ACCESS_TOKEN }}
           branch: main
           enforce_admins: false
     # Step 5. Use PSR to make release
@@ -66,7 +66,7 @@ jobs:
       uses: benjefferies/branch-protection-bot@master
       if: always()  # Force to always run this step to ensure "include administrators" is always turned back on
       with:
-        access-token: ${{ secrets.ACCESS_TOKEN }}
+        access_token: ${{ secrets.ACCESS_TOKEN }}
         branch: main
         enforce_admins: true
     # Step 7. Publish to TestPyPI
