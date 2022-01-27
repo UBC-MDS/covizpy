@@ -46,36 +46,37 @@ from covizpy.plot_spec import plot_spec
 
 To use the functions, see below examples:
 
-### Retrieve COVID-19 data with default date range and location
+### Retrieve COVID-19 data with specified date range and default all locations
 
 ```python
-df = get_data()
+df = get_data(date_from="2022-01-01", date_to="2022-01-21")
 ```
 
 ### Plot summary graph (bar chart)
 
 ```python
-plot_summary(df)
+plot_summary(df, var="location", val="new_cases", fun="sum", date_from="2022-01-01", date_to="2022-01-15", top_n=10)
 ```
 
 ![Summary graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_summary.png)
 
-
-### Plot metrics of new COVID-19 cases (line chart)
-
-```python
-plot_metric()
-```
-
-![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_metric.png)
-
-### Plot specific country COVID-19 cases (line chart)
+### Plot COVID-19 cases for specific countries (line chart)
 
 ```python
-plot_spec(df, country=["Canada"])
+plot_spec(df, location=["Canada", "Turkey"], val="new_cases", date_from="2022-01-01", date_to="2022-01-07")
 ```
 
-![New COVID-19 case graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_spec.png)
+![New COVID-19 specific graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_spec.png)
+
+### Plot new COVID-19 cases versus another metric (line chart)
+
+```python
+plot_metric(metric='positive_rate', date_from="2022-01-15", date_to="2022-01-21")
+```
+
+![New COVID-19 case metric graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_metric.png)
+
+
 
 
 ## Contributors
