@@ -23,7 +23,7 @@ jobs:
     ### New
     # Step 6. Check style
     - name: Check style
-      run: poetry run flake8 --exclude=docs* --max-line-length 120
+      run: poetry run flake8 --exclude=docs* --max-line-length 170
       
     # Step 7. Run tests for package
     - name: Test with pytest
