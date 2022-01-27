@@ -1,5 +1,9 @@
 # covizpy
 
+[![codecov](https://codecov.io/gh/ubc-mds/covizpy/branch/master/graph/badge.svg)](https://codecov.io/gh/ubc-mds/covizpy)
+[![ci-cd](https://github.com/UBC-MDS/covizpy/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/covizpy/actions/workflows/ci-cd.yml)
+[![Documentation Status](https://readthedocs.org/projects/covizpy/badge/?version=latest)](https://covizpy.readthedocs.io/en/latest/?badge=latest)
+
 `covizpy` is a Python package that provides easy access to Covid-19 data from [Our World in Data](https://ourworldindata.org/coronavirus), as well as functions to generate relevant Covid-19 charts and summaries easily. We aim to make `covizpy` simple and easy to use. Our goal is to enable anyone with basic Python programming knowledge to access and visualize Covid-19 data, and make their own informed decisions and conclusions.
 
 There are existing Python packages that allow users to download and generate Covid-19 charts. For example, [covid19pandas](https://github.com/PayneLab/covid19pandas) is a package that presents COVID-19 data from Johns Hopkins University and The New York Times in pandas dataframes, to make analysis and visualization easier in a Python environment.
