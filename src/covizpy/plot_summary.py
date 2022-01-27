@@ -13,7 +13,6 @@ def plot_summary(
     top_n=5,
 ):
     """Generate summary plot
-
     Create a horizontal bar chart summarising a specified variable and value
     within a time period
 
@@ -35,6 +34,15 @@ def plot_summary(
         End date of data range with format 'YYYY-MM-DD'. By default 'None' is used to represent today's date
     top_n : int, optional
         Specify number of qualitative values to show, by default 5
+
+    Returns
+    -------
+    altair.Chart
+        Altair bar plot for the specified variables and period
+
+    Example
+    -------
+    >>> plot_summary(df, var="location", var="new_cases", fun="sum", date_from="2022-01-01", date_to="2022-01-15", top_n=10)
     """
     # init dates if None
     if date_from is None:
