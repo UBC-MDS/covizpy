@@ -68,10 +68,14 @@ def get_data(date_from=None, date_to=None, location=None):
             "Invalid argument type: date_to must be in string format of YYYY-MM-DD."
         )
 
+    error_msg = (
+        "Invalid values: date_from should be smaller or equal"
+        " to date_to (or today's date if date_to is not specified)."
+    )
+
     if pd.to_datetime(date_to) < pd.to_datetime(date_from):
         raise ValueError(
-            "Invalid values: date_from should be smaller or equal \
-                to date_to (or today's date if date_to is not specified)."
+            error_msg,
         )
     if pd.to_datetime(date_to) > pd.to_datetime("today").normalize():
         raise ValueError("Invalid values: date_to should be smaller or equal to today.")
