@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "covizpy"
-version = "1.0.3"
+version = "1.0.5"
 description = "Provides access to Covid-19 data from Our World in Data, and functions to generate relevant charts and summaries."
 authors = ["Rohit Rawat, Rong Li, Thomas Siu, Ting Zhe Yan"]
 license = "MIT"
