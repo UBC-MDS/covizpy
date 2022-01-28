@@ -1,6 +1,6 @@
 # covizpy
 
-[![codecov](https://codecov.io/gh/ubc-mds/covizpy/branch/master/graph/badge.svg)](https://codecov.io/gh/ubc-mds/covizpy)
+[![codecov](https://codecov.io/gh/ubc-mds/covizpy/branch/main/graph/badge.svg?token=bCRbU4Axjx)](https://codecov.io/gh/ubc-mds/covizpy)
 [![ci-cd](https://github.com/UBC-MDS/covizpy/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/covizpy/actions/workflows/ci-cd.yml)
 [![Documentation Status](https://readthedocs.org/projects/covizpy/badge/?version=latest)](https://covizpy.readthedocs.io/en/latest/?badge=latest)
 
