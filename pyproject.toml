@@ -5,6 +5,10 @@ description = "Provides access to Covid-19 data from Our World in Data, and func
 authors = ["Rohit Rawat, Rong Li, Thomas Siu, Ting Zhe Yan"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/UBC-MDS/covizpy"
+repository = "https://github.com/UBC-MDS/covizpy"
+documentation = 'https://covizpy.readthedocs.io'
+
 
 [tool.poetry.dependencies]
 python = "^3.9"
