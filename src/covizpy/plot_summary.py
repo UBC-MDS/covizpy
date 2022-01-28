@@ -101,10 +101,20 @@ def plot_summary(
 
     y_lab = var.replace("_", " ").title()
     x_lab = val.replace("_", " ").title()
-    title = f"Top {top_n} {y_lab} by {x_lab}"
+    if date_from == date_to:
+        subtitle = f"from {date_from.strftime('%Y-%m-%d')}"
+    else:
+        subtitle = (
+            f"from {date_from.strftime('%Y-%m-%d')} to {date_to.strftime('%Y-%m-%d')}"
+        )
+    title = alt.TitleParams(f"Top {top_n} {y_lab} by {x_lab}", subtitle=[subtitle])
 
     return (
         alt.Chart(df_plot, title=title)
         .mark_bar()
-        .encode(y=alt.Y(var, sort="x", title=y_lab), x=alt.X(val, title=x_lab))
+        .encode(
+            y=alt.Y(var, sort="x", title=y_lab),
+            x=alt.X(val, title=x_lab),
+            color=alt.Color(var, legend=None),
+        )
     )
