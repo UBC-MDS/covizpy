@@ -1,6 +1,4 @@
 from covizpy.plot_summary import plot_summary
-from covizpy.get_data import get_data
-import pandas as pd
 from pytest import raises, fixture
 import pickle
 
