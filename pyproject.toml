@@ -24,6 +24,7 @@ sphinxcontrib-napoleon = "^0.7"
 python-semantic-release = "^7.24.0"
 Sphinx = "^4.4.0"
 flake8 = "^4.0.1"
+jupyter = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
