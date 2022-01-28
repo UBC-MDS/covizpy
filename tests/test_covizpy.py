@@ -1,1 +1,0 @@
-from covizpy import covizpy
