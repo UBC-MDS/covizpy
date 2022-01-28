@@ -5,6 +5,10 @@ description = "Provides access to Covid-19 data from Our World in Data, and func
 authors = ["Rohit Rawat, Rong Li, Thomas Siu, Ting Zhe Yan"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/UBC-MDS/covizpy"
+repository = "https://github.com/UBC-MDS/covizpy"
+documentation = 'https://covizpy.readthedocs.io'
+
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -39,9 +43,3 @@ dist_path = "dist/"                         # where to put dists
 upload_to_pypi = false                      # don't auto-upload to PyPI
 remove_dist = false                         # don't remove dists
 patch_without_tag = "true"                  # always bump version on CD, even without angular commit (default is patch)
-
-[tool.poetry]
-readme = "README.md"
-homepage = "https://github.com/UBC-MDS/covizpy"
-repository = "https://github.com/UBC-MDS/covizpy"
-documentation = 'https://covizpy.readthedocs.io'
