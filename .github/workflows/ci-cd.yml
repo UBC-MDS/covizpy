@@ -20,10 +20,10 @@ jobs:
     - name: Install package
       run: poetry install
     
-    # ### New
-    # # Step 6. Check style
-    # - name: Check style
-    #   run: poetry run flake8 --exclude=docs* --max-line-length 170
+    ### New
+    # Step 6. Check style
+    - name: Check style
+      run: poetry run flake8 --exclude=docs* --max-line-length 170
       
     # Step 7. Run tests for package
     - name: Test with pytest
