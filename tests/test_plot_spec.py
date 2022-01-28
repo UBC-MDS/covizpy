@@ -72,7 +72,7 @@ def test_plot_spec_inputs(df):
 
     # check date_to value
     with raises(ValueError) as e:
-        plot_spec(df, date_to="2022-06-11")
+        plot_spec(df, date_to="2222-06-11")
     assert "Invalid values: date_to should be smaller or equal to today." == str(
         e.value
     )
@@ -89,22 +89,22 @@ def test_plot_spec_mapping(df):
     """
     # check y-axis is using the correct variable
     assert (
-        plot_spec(df, val="new_deaths").layer[0].encoding.y.shorthand == "new_deaths"
+        plot_spec(df, val="new_deaths", date_from="2022-01-19", date_to="2022-01-20").layer[0].encoding.y.shorthand == "new_deaths"
     ), "Altair chart y-axis should be using variable 'new_deaths'"
 
     # check y-axis is using the correct lable
     assert (
-        plot_spec(df, val="new_deaths").layer[1].encoding.y.title == "New Deaths"
+        plot_spec(df, val="new_deaths", date_from="2022-01-19", date_to="2022-01-20").layer[1].encoding.y.title == "New Deaths"
     ), "Altair chart y-axis should have lable 'New Deaths'"
 
     # check the first layer of the graph is line
     assert (
-        plot_spec(df).layer[0].mark == "line"
+        plot_spec(df, date_from="2022-01-19", date_to="2022-01-20").layer[0].mark == "line"
     ), "Altair chart first layer should be line"
 
     # check the title of the graph
     assert (
-        plot_spec(df, title="Daily cases").layer[0].title == "Daily cases"
+        plot_spec(df, title="Daily cases", date_from="2022-01-19", date_to="2022-01-20").layer[0].title == "Daily cases"
     ), "Altair chart title should be changeable"
 
     # check the data of the graph
