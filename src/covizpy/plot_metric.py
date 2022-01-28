@@ -15,15 +15,20 @@ def plot_metric(metric='positive_rate', date_from=None, date_to=None):
     metric    : str, optional
                 The name of the metric to be plotted with the new COVID cases. 
                 It can be one of the these: "reproduction_rate", "positive_rate",
-                or any other numeric column
+                or any other numeric column, by default 'positive_rate'
     date_from : str, optional
-                Start date of the plot in "YYYY-MM-DD" format, by default "2022-01-01"
+                Start date of the plot in "YYYY-MM-DD" format, by default None
     date_to   : str, optional
-                End date of the plot in "YYYY-MM-DD" format, by default "2022-01-13"
+                End date of the plot in "YYYY-MM-DD" format, by default None
+                
     Returns
     -------
     chart
         The line chart created
+        
+    Examples
+    --------
+    >>> plot_metric(metric='positive_rate', date_from="2022-01-01", date_to="2022-01-07")
     """
     
     # Check the input format of arguments
