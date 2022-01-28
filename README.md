@@ -34,7 +34,7 @@ Before installing the package, following packages must be installed:
 ## Installation
 
 ```bash
-pip install --index-url https://test.pypi.org/simple/ covizpy
+pip install covizpy
 ```
 
 ## Usage and Examples
