@@ -8,12 +8,7 @@ from dateutil.parser import parse
 
 
 def plot_spec(
-    df,
-    location=["Canada"],
-    val="new_cases",
-    date_from=None,
-    date_to=None,
-    title=None
+    df, location=["Canada"], val="new_cases", date_from=None, date_to=None, title=None
 ):
     """
     Create a line chart presenting specific country/countries COVID information
@@ -29,7 +24,7 @@ def plot_spec(
         Quantitative values of interests. Must be numeric variable.
         Also known as a 'measure'. By default 'new_cases'
     date_from : str, optional
-        Start date of the data range with format in "YYYY-MM-DD" format. By 
+        Start date of the data range with format in "YYYY-MM-DD" format. By
         default 'None' is used to represent 7 days prior to today's date
     date_to : str, optional
         End date of data range with format in "YYYY-MM-DD" format. By default
@@ -41,15 +36,17 @@ def plot_spec(
     -------
     plot
         Altair line chart created
-    
+
     Examples
     --------
     >>> plot_spec(df, location=["Canada", "Turkey"], val="new_cases", date_from="2022-01-01", date_to="2022-01-07")
-    
+
     """
     # init dates if None
     if date_from is None:
-        date_from = (pd.to_datetime("today").normalize() - pd.to_timedelta(7, unit="d")).strftime("%Y-%m-%d")
+        date_from = (
+            pd.to_datetime("today").normalize() - pd.to_timedelta(7, unit="d")
+        ).strftime("%Y-%m-%d")
 
     if date_to is None:
         date_to = pd.to_datetime("today").normalize().strftime("%Y-%m-%d")
@@ -62,7 +59,9 @@ def plot_spec(
         raise TypeError("Invalid argument type: location must be a list of strings.")
     for item in location:
         if not (isinstance(item, str)):
-            raise TypeError("Invalid argument type: values inside location list must be strings.")
+            raise TypeError(
+                "Invalid argument type: values inside location list must be strings."
+            )
 
     if not isinstance(val, str):
         raise TypeError("Invalid argument type: val must be a string.")
@@ -74,14 +73,14 @@ def plot_spec(
         date_from != datetime.strptime(date_from, "%Y-%m-%d").strftime("%Y-%m-%d")
     except ValueError:
         raise ValueError(
-            'Invalid argument value: date_from must be in format of YYYY-MM-DD. Also check if it is a valid date.'
+            "Invalid argument value: date_from must be in format of YYYY-MM-DD. Also check if it is a valid date."
         )
 
     try:
         date_to != datetime.strptime(date_to, "%Y-%m-%d").strftime("%Y-%m-%d")
     except ValueError:
         raise ValueError(
-            'Invalid argument value: date_to must be in format of YYYY-MM-DD. Also check if it is a valid date.'
+            "Invalid argument value: date_to must be in format of YYYY-MM-DD. Also check if it is a valid date."
         )
 
     if pd.to_datetime(date_to) < pd.to_datetime(date_from):
@@ -119,27 +118,33 @@ def plot_spec(
         title = f"COVID-19 {val_label}"
 
     # Create line plot
-    line = alt.Chart(df, title=title).mark_line().encode(
-        x=alt.X('yearmonthdate(date):T',
-                axis=alt.Axis(format='%e %b, %Y'),
-                title='Date'),
-        y=alt.Y(val, title=val_label),
-        color=alt.Color('location', legend=None),
-        tooltip=['location', val]
+    line = (
+        alt.Chart(df, title=title)
+        .mark_line()
+        .encode(
+            x=alt.X(
+                "yearmonthdate(date):T", axis=alt.Axis(format="%e %b, %Y"), title="Date"
+            ),
+            y=alt.Y(val, title=val_label),
+            color=alt.Color("location", legend=None),
+            tooltip=["location", val],
+        )
     )
 
     # Use direct labels
-    order = (df.loc[df['date'] == df['date'].max()].sort_values(
-        val, ascending=False
-    ))
+    order = df.loc[df["date"] == df["date"].max()].sort_values(val, ascending=False)
 
-    text = alt.Chart(order).mark_text(dx=20).encode(
-        x=alt.X('yearmonthdate(date):T',
-                axis=alt.Axis(format='%e %b, %Y'),
-                title='Date'),
-        y=alt.Y(val, title=val_label),
-        text='location',
-        color='location',
+    text = (
+        alt.Chart(order)
+        .mark_text(dx=20)
+        .encode(
+            x=alt.X(
+                "yearmonthdate(date):T", axis=alt.Axis(format="%e %b, %Y"), title="Date"
+            ),
+            y=alt.Y(val, title=val_label),
+            text="location",
+            color="location",
+        )
     )
     plot = line + text
     return plot

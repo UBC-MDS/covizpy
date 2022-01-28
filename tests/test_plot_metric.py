@@ -2,7 +2,7 @@
 # Author: Rohit Rawat
 
 from covizpy.plot_metric import plot_metric
-from pytest import raises, fixture
+from pytest import raises
 
 
 def test_plot_metric_input():
