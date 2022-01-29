@@ -1,6 +1,9 @@
 # Changelog
 
 <!--next-version-placeholder-->
+
+## v1.0.16 (2022-01-29)
+
 ## v1.0.15 (01/28/2022)
 
 - Deployed all necessary code
