@@ -1,9 +1,10 @@
 # Changelog
 
 <!--next-version-placeholder-->
-## v1.1.0 (01/24/2022)
+## v1.0.15 (01/28/2022)
 
-- CI/CD compatible package
+- Deployed all necessary code
+- Include examples in README
 
 ## v0.1.0 (01/11/2022)
 
