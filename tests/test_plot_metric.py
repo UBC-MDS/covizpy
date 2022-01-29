@@ -29,6 +29,19 @@ def test_plot_metric_input():
         plot_metric(metric=123)
     assert "Incorrect argument type: Metric 1 input should be a string" == str(e.value)
 
+    # check the data type of the location
+    with raises(TypeError) as e:
+        plot_metric(location=123)
+    assert "Invalid argument type: location must be a single string." == str(e.value)
+
+    # check whether the location is a valid location or not
+    with raises(ValueError) as e:
+        plot_metric(location="invalid_column")
+    assert (
+        "Invalid argument value: location is not present in available locations."
+        == str(e.value)
+    )
+
     # check if the metric provided is one of the columns in the dataframe
     with raises(ValueError) as e:
         plot_metric(metric="invalid_column")
