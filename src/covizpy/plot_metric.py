@@ -7,30 +7,30 @@ from covizpy.get_data import get_data
 alt.data_transformers.enable("data_server")
 
 
-def plot_metric(metric="positive_rate", date_from=None, date_to=None):
+def plot_metric(
+    location="Canada", metric="positive_rate", date_from=None, date_to=None
+):
     """
     Create a line chart visualizing COVID total new
     cases and another metric for a specific time period
 
     Parameters
     ----------
+    location  : str, optional
+                The name of the location to be plotted with the new COVID cases.
+                It can be any of the values present in the location column of df
     metric    : str, optional
                 The name of the metric to be plotted with the new COVID cases.
                 It can be one of the these: "reproduction_rate", "positive_rate",
-                or any other numeric column, by default 'positive_rate'
+                or any other numeric column
     date_from : str, optional
-                Start date of the plot in "YYYY-MM-DD" format, by default None
+                Start date of the plot in "YYYY-MM-DD" format, by default "2022-01-01"
     date_to   : str, optional
-                End date of the plot in "YYYY-MM-DD" format, by default None
-
+                End date of the plot in "YYYY-MM-DD" format, by default "2022-01-13"
     Returns
     -------
     chart
         The line chart created
-
-    Examples
-    --------
-    >>> plot_metric(metric='positive_rate', date_from="2022-01-01", date_to="2022-01-07")
     """
 
     # Check the input format of arguments
@@ -47,12 +47,21 @@ def plot_metric(metric="positive_rate", date_from=None, date_to=None):
             "Incorrect argument type: The end date should be in string format"
         )
 
-    # Check if it is able to fetch the data
+    # Check if func it is able to fetch the data
     try:
         df = get_data(date_from, date_to)
     except FileNotFoundError:
         raise FileNotFoundError(
             "Data not found! There may be a problem with data URL or your date format."
+        )
+
+    # Check whether the location is in the df or not
+    if not isinstance(location, str):
+        raise TypeError("Invalid argument type: location must be a single string.")
+
+    if not (location in df.location.unique()):
+        raise ValueError(
+            "Invalid argument value: location is not present in available locations."
         )
 
     # Check if the metric provided is present in the data frame or not
@@ -61,7 +70,10 @@ def plot_metric(metric="positive_rate", date_from=None, date_to=None):
             "Incorrect argument value: The metric chosen is not one of the columns in dataframe"
         )
 
+    df = df.query("location in @location")
+
     metric_label = "Mean " + metric.replace("_", " ")
+    title_label = "Daily COVID cases versus " + metric_label + " in " + location
 
     base = alt.Chart(df).encode(
         x=alt.X(
@@ -85,8 +97,6 @@ def plot_metric(metric="positive_rate", date_from=None, date_to=None):
         )
     )
 
-    plot = alt.layer(
-        line1, line2, title="Daily COVID cases versus " + metric_label
-    ).resolve_scale(y="independent")
+    plot = alt.layer(line1, line2, title=title_label).resolve_scale(y="independent")
 
     return plot
