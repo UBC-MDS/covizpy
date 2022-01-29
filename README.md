@@ -75,7 +75,7 @@ plot_spec(df, location=["Canada", "Turkey"], val="new_cases", date_from="2022-01
 ### Plot new COVID-19 cases versus another metric (line chart)
 
 ```python
-plot_metric(metric='positive_rate', date_from="2022-01-15", date_to="2022-01-21")
+plot_metric(location="Canada", metric="positive_rate", date_from="2022-01-01", date_to="2022-01-15")
 ```
 
 ![New COVID-19 case metric graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_metric.png)
