@@ -82,7 +82,6 @@ plot_metric(location="Canada", metric="positive_rate", date_from="2022-01-01", d
 
 
 
-
 ## Contributors
 
 * Rohit Rawat
