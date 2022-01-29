@@ -87,16 +87,26 @@ jobs:
           enforce_admins: false
     
     # Step 7. Bump version and tagging
-    - name: Bump version and tagging and publish
+    #- name: Bump version and tagging and publish
+    #  run: |
+    #    git config --local user.email "action@github.com"
+    #    git config --local user.name "GitHub Action"
+    #    git pull origin main
+    #    poetry run semantic-release version
+    #    poetry version
+    #    git commit --amend -m "[skip actions] Bump new version"
+    #    git push --tag
+
+    # Step 7. Use PSR to make release
+    - name: Python Semantic Release
+      env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git pull origin main
-        poetry run semantic-release version
-        poetry version
-        git commit --amend -m "[skip actions] Bump new version"
-        git push --tag
-        
+          pip install python-semantic-release
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          semantic-release publish  
+
     - name: Push package version changes
       uses: ad-m/github-push-action@master
       with:
