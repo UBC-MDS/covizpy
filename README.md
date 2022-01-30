@@ -1,4 +1,4 @@
-# covizpy <img src='img/logo.png' align="right" height="139" />
+# covizpy <img src='https://raw.githubusercontent.com/UBC-MDS/covizpy/main/img/logo.png' align="right" height="139" />
 
 [![codecov](https://codecov.io/gh/ubc-mds/covizpy/branch/main/graph/badge.svg?token=bCRbU4Axjx)](https://codecov.io/gh/ubc-mds/covizpy)
 [![ci-cd](https://github.com/UBC-MDS/covizpy/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/covizpy/actions/workflows/ci-cd.yml)
