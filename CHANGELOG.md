@@ -2,6 +2,9 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.20 (2022-01-30)
+
+
 ## v1.0.19 (2022-01-30)
 - Experiment on breaking changes
 - Make sure the CI-CD workflow works
