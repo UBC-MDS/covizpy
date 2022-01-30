@@ -2,6 +2,9 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.19 (2022-01-30)
+
+
 ## v1.0.18 (2022-01-29)
 - Last minor version before major release
 - Updated all the features and corresponding test cases
