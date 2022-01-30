@@ -95,7 +95,7 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 ## License
 
-`covizpy` was created by Rohit Rawat, Rong Li, Thomas Siu, Ting Zhe Yan. It is licensed under the terms of the MIT license.
+`covizpy` was created by Rohit Rawat, Rong Li, Thomas Siu, Ting Zhe Yan . It is licensed under the terms of the MIT license.
 
 ## Credits
 
