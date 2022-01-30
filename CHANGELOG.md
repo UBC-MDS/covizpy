@@ -3,7 +3,7 @@
 <!--next-version-placeholder-->
 
 ## v1.0.19 (2022-01-30)
-
+- Experiment on breaking changes
 
 ## v1.0.18 (2022-01-29)
 - Last minor version before major release
