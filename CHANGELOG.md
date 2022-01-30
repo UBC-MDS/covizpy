@@ -3,7 +3,10 @@
 <!--next-version-placeholder-->
 
 ## v1.0.18 (2022-01-29)
-
+- Last minor version before major release
+- Updated all the features and corresponding test cases
+- Modified examples on README
+- Enabled CICD workflow with automatically version bumping
 
 ## v1.0.17 (2022-01-29)
 
