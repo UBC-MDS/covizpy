@@ -1,4 +1,4 @@
-# covizpy <img src='https://raw.githubusercontent.com/UBC-MDS/covizpy/main/img/logo.png' align="right" height="139" />
+# covizpy <img src='https://raw.githubusercontent.com/UBC-MDS/covizpy/main/img/logo.png' align="right" height="100" />
 
 [![codecov](https://codecov.io/gh/ubc-mds/covizpy/branch/main/graph/badge.svg?token=bCRbU4Axjx)](https://codecov.io/gh/ubc-mds/covizpy)
 [![ci-cd](https://github.com/UBC-MDS/covizpy/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/covizpy/actions/workflows/ci-cd.yml)
@@ -37,7 +37,7 @@ Before installing the package, following packages must be installed:
 pip install covizpy
 ```
 
-## Usage and Examples
+## Usage and Examples 
 
 To use the package, import the package with following commands:
 
