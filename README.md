@@ -81,7 +81,6 @@ plot_metric(location="Canada", metric="positive_rate", date_from="2022-01-01", d
 ![New COVID-19 case metric graph](https://github.com/UBC-MDS/covizpy/raw/main/img/plot_metric.png)
 
 
-
 ## Contributors
 
 * Rohit Rawat
