@@ -37,7 +37,7 @@ Before installing the package, following packages must be installed:
 pip install covizpy
 ```
 
-## Usage and Examples
+## Usage and Examples 
 
 To use the package, import the package with following commands:
 
